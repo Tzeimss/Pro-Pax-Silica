@@ -3,27 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
+    <title>Clean Energy</title>
 
     <link rel="stylesheet" href="intro_css.css">
-
 </head>
-<body>
-    <nav id="drag_nav" class="panel_nav">
-        <div id="drag_handle" class="handle_nav">
-            <span class="handle_bar"></span>
+<body style="background-color:black;">
 
-    <ul class="nav_links">
-        <li><a href="#product">Products</a></li>
-        <li><a href="#service">Services</a></li>
-        
-    </ul>
+    <!--Top navigation bar-->
+    <nav class="navbar">
+        <div class="logo">EcoPower</div>
+
+        <ul class="nav-links">
+            <li class="dropdown">
+                <a href="#product">Products</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#panels">Panels</a></li>
+                        <li><a href="#inverter">Inverter</a></li>
+                        <li><a href="#batteries">Batteries</a></li>
+                    </ul>
+            </li>
+    
+            <li class="dropdown">
+                <a href="#service">Services</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#consultation">Consultation</a></li>
+                        <li><a href="#designing">Designing</a></li>
+                        <li><a href="#permitting">Permitting</a></li>
+                    </ul>
+            </li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="#" class="btn btn-outline">Sign in</a>
+            <a href="#" class="btn btn-solid">Sign up</a>
         </div>
-        </nav>
+    </nav>
 
-        <center>
+    <!--Main section-->
+    <section class="hero">
         <h1>Clean Energy for a Brighter Tomorrow</h1>
         <p>Power your home while protecting the planet.</p>
-        </center>
+
+        <div class="hero-form">
+            <input type="email" placeholder="Enter your email" class="email-input">
+            <button class="btn btn-green">Get Started</button>
+        </div>
+    </section>
+
 </body>
 </html>
