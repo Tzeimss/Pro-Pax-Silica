@@ -1,8 +1,8 @@
-# Pro-Pax-Silica-UPD
+# Project Title
 
-# Sun Son Solar
+Sun Son Solar
 
-## Team
+## Team name
 
 Pro Pax Silica
 
