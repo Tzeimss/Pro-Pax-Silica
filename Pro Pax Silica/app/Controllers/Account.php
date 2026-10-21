@@ -55,20 +55,24 @@ class Account extends BaseController
 
     public function login(): RedirectResponse
     {
-        $rules = ['email' => 'required|valid_email', 'password' => 'required'];
+        $rules = ['email' => 'required|max_length[190]', 'password' => 'required'];
         $data = $this->request->getPost();
         if (! $this->validateData($data, $rules)) {
             return redirect()->to(site_url('account?mode=signin'))->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $user = (new UserModel())->where('email', strtolower(trim($data['email'])))->first();
-        if (! $user || ! password_verify($data['password'], $user['password_hash'])) {
+        $identifier = trim($data['email']);
+        $user = (new UserModel())->groupStart()
+            ->where('email', strtolower($identifier))
+            ->orWhere('username', $identifier)
+            ->groupEnd()->first();
+        if (! $user || ! (int) $user['is_active'] || ! password_verify($data['password'], $user['password_hash'])) {
             return redirect()->to(site_url('account?mode=signin'))->withInput()->with('status', 'Email or password is incorrect.');
         }
 
         session()->regenerate();
-        session()->set('user', ['id' => $user['id'], 'name' => $user['first_name']]);
-        return redirect()->to(site_url('/'))->with('status', 'You are signed in.');
+        session()->set('user', ['id' => $user['id'], 'name' => $user['first_name'], 'role' => $user['role']]);
+        return redirect()->to(site_url('portal'))->with('status', 'You are signed in.');
     }
 
     public function logout(): RedirectResponse

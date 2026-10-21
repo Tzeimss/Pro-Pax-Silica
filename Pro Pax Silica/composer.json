@@ -12,8 +12,8 @@
             "Config\\": "app/Config/"
         }
     },
-    "scripts": {
-        "post-update-cmd": ["CodeIgniter\\ComposerScripts::postUpdate"]
-    },
-    "config": {"optimize-autoloader": true, "sort-packages": true}
+    "config": {"optimize-autoloader": true, "sort-packages": true},
+    "require-dev": {
+        "kint-php/kint": "^6.1"
+    }
 }

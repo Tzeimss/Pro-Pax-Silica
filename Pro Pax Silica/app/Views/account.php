@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,7 +41,7 @@
                     <div class="account-field signup-only"><label for="middle-name">Middle name</label><input id="middle-name" name="middleName" autocomplete="additional-name" placeholder="Your middle name"><span class="field-error"></span></div>
                     <div class="account-field signup-only"><label for="birthday">Birthday</label><input id="birthday" name="birthday" type="date" autocomplete="bday"><span class="field-error"></span></div>
                     <div class="account-field signup-only"><label for="gender">Gender</label><select id="gender" name="gender"><option value="">Select your gender</option><option value="female">Female</option><option value="male">Male</option><option value="non-binary">Non-binary</option><option value="prefer-not-to-say">Prefer not to say</option></select><span class="field-error"></span></div>
-                    <div class="account-field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com"><span class="field-error"></span></div>
+                    <div class="account-field"><label for="email" data-identifier-label>Email address</label><input id="email" name="email" type="text" autocomplete="email" placeholder="you@example.com"><span class="field-error"></span></div>
                     <div class="account-field signup-only"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Your phone number"><span class="field-error"></span></div>
                     <div class="account-field field-wide signup-only"><label for="address">Address</label><input id="address" name="address" autocomplete="street-address" placeholder="Street, city, region"><span class="field-error"></span></div>
                     <div class="account-field signup-only"><label for="username">Username</label><input id="username" name="username" autocomplete="username" placeholder="Choose a username"><span class="field-error"></span></div>
@@ -62,7 +62,8 @@
             var fields = Array.from(form.querySelectorAll('input, select'));
             var status = form.querySelector('.account-status');
             var today = new Date().toISOString().split('T')[0];
-            document.getElementById('birthday').max = today;
+            var birthday = document.getElementById('birthday');
+            if (birthday) birthday.max = today;
 
             if (isSignin) {
                 form.classList.add('is-signin');
@@ -76,6 +77,7 @@
                 document.querySelector('[data-switch-link]').href = '/account?mode=signup';
                 document.getElementById('email').placeholder = 'Email address';
                 document.getElementById('email').autocomplete = 'username';
+                document.querySelector('[data-identifier-label]').textContent = 'Email or username';
                 document.getElementById('password').autocomplete = 'current-password';
                 document.getElementById('password').placeholder = 'Your password';
             }
@@ -109,7 +111,7 @@
                     var input = document.getElementById(id);
                     var value = input.value.trim();
                     var message = value ? '' : 'This field is required.';
-                    if (id === 'email' && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) message = 'Enter a valid email address.';
+                    if (id === 'email' && !isSignin && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) message = 'Enter a valid email address.';
                     if (id === 'phone' && value && !/^[0-9+()\-\s]{7,}$/.test(value)) message = 'Enter a valid phone number.';
                     if (id === 'username' && value && value.length < 3) message = 'Use at least 3 characters.';
                     if (!isSignin && id === 'password' && value && value.length < 8) message = 'Use at least 8 characters.';

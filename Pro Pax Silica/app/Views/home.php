@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,11 +46,13 @@
                             <li><a href="#monitoring">Monitoring</a></li>
                         </ul>
                 </li>
+                <li><a href="#our-story">About us</a></li>
+                <li><a href="/account?mode=signin">Support</a></li>
             </ul>
 
             <div class="nav-buttons">
                 <?php if (session()->has('user')): ?>
-                    <span class="btn btn-outline">Welcome, <?= esc(session('user.name')) ?></span>
+                    <a class="btn btn-outline" href="<?= site_url('portal') ?>">Workspace · <?= esc((session()->get('user')['name'] ?? '')) ?></a>
                     <form action="/logout" method="post" style="display:inline"><?= csrf_field() ?><button class="btn btn-solid" type="submit">Sign out</button></form>
                 <?php else: ?>
                     <a href="/account?mode=signin" class="btn btn-outline">Sign in</a>
@@ -69,10 +71,10 @@
         <div class="hero-inner">
             <div class="hero-copy">
                 <span class="eyebrow"><span class="eyebrow-dot"></span> SUNSHINE, MADE USEFUL</span>
-                <h1 id="hero-title">Your roof has a <em>brighter</em> side.</h1>
-                <p>Make clean energy feel closer to home. Explore solar solutions designed around the way you live.</p>
+                <h1 id="hero-title">Power Your Future with <em>Solar.</em></h1>
+                <p>Lower energy costs, build greater independence, and make clean energy feel closer to home.</p>
                 <div class="hero-actions">
-                    <a class="button button-lime" href="#solutions">Explore solar <span aria-hidden="true">↗</span></a>
+                    <a class="button button-lime" href="/account?mode=signup">Get a free quote <span aria-hidden="true">↗</span></a>
                     <a class="text-link" href="#our-story">Meet Sun Son Solar <span aria-hidden="true">↓</span></a>
                 </div>
                 <div class="hero-note"><span class="note-line"></span> A more thoughtful way to power what matters.</div>

@@ -2,13 +2,15 @@
 
 namespace Config;
 
-use CodeIgniter\Config\BasePaths;
-
-class Paths extends BasePaths
+/**
+ * Paths used by CodeIgniter to locate the application and framework folders.
+ */
+class Paths
 {
-    public $systemDirectory = __DIR__ . '/../../vendor/codeigniter4/framework/system';
-    public $appDirectory = __DIR__ . '/..';
-    public $writableDirectory = __DIR__ . '/../../writable';
-    public $testsDirectory = __DIR__ . '/../../tests';
-    public $viewDirectory = __DIR__ . '/../Views';
+    public string $systemDirectory = __DIR__ . '/../../vendor/codeigniter4/framework/system';
+    public string $appDirectory = __DIR__ . '/..';
+    public string $writableDirectory = __DIR__ . '/../../writable';
+    public string $testsDirectory = __DIR__ . '/../../tests';
+    public string $viewDirectory = __DIR__ . '/../Views';
+    public string $envDirectory = __DIR__ . '/../../';
 }
